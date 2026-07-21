@@ -2,6 +2,6 @@
 package Modelo;
 
 
-public class Roles {
+public class Conductor {
     
 }
