@@ -33,7 +33,7 @@ public class FormLog extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_Pass = new javax.swing.JTextField();
         txt_Id = new javax.swing.JTextField();
         txt_Nombre = new javax.swing.JTextField();
         txt_Telefono = new javax.swing.JTextField();
@@ -64,7 +64,7 @@ public class FormLog extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jLabel6.setText("Rol:");
 
-        jTextField1.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        txt_Pass.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
         txt_Id.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
@@ -106,7 +106,7 @@ public class FormLog extends javax.swing.JFrame {
                                 .addComponent(txt_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(cbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, 190, Short.MAX_VALUE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_Pass, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_Fecha, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel2)
@@ -140,7 +140,7 @@ public class FormLog extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -205,7 +205,7 @@ public class FormLog extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_Ingresar;
-    private javax.swing.JComboBox<String> cbRol;
+    public javax.swing.JComboBox<String> cbRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -214,10 +214,10 @@ public class FormLog extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField txt_Fecha;
-    private javax.swing.JTextField txt_Id;
-    private javax.swing.JTextField txt_Nombre;
-    private javax.swing.JTextField txt_Telefono;
+    public javax.swing.JTextField txt_Fecha;
+    public javax.swing.JTextField txt_Id;
+    public javax.swing.JTextField txt_Nombre;
+    public javax.swing.JTextField txt_Pass;
+    public javax.swing.JTextField txt_Telefono;
     // End of variables declaration//GEN-END:variables
 }
