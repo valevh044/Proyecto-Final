@@ -27,7 +27,7 @@ public class ControladorUsuarios {
         this.modeloUsuario = modeloUsuario;
         this.log = log;
 
-        this.log.btn_Ingresar.addActionListener(new ActionListener() {
+        this.log.btn_Validar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UsuarioControlador();

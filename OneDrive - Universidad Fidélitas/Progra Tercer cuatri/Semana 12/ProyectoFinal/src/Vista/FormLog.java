@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author valev
@@ -40,7 +42,7 @@ public class FormLog extends javax.swing.JFrame {
         cbRol = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         txt_Fecha = new javax.swing.JTextField();
-        btn_Ingresar = new javax.swing.JButton();
+        btn_Validar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,8 +82,13 @@ public class FormLog extends javax.swing.JFrame {
 
         txt_Fecha.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
-        btn_Ingresar.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        btn_Ingresar.setText("Ingresar");
+        btn_Validar.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        btn_Validar.setText("Validar");
+        btn_Validar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ValidarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,7 +124,7 @@ public class FormLog extends javax.swing.JFrame {
                 .addContainerGap(148, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Ingresar)
+                .addComponent(btn_Validar)
                 .addGap(197, 197, 197))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,7 +157,7 @@ public class FormLog extends javax.swing.JFrame {
                     .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addComponent(btn_Ingresar)
+                .addComponent(btn_Validar)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -167,6 +174,21 @@ public class FormLog extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_ValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ValidarActionPerformed
+
+        if(txt_Id.getText().equals("305630197") && txt_Pass.getText().equals("1234"))
+        {  fprincipal.setVisible(true);
+           this.setVisible(false);
+        }
+        else
+           if( fprincipal.fpersona.objUsuario.buscarUsuario(fprincipal.fpersona.listaUsuarios,txt_Id.getText(),txt_Pass.getText())==true)
+            JOptionPane.showMessageDialog(null,"Registro Correcto","INFORMACION",
+            JOptionPane.INFORMATION_MESSAGE);
+           else  
+            JOptionPane.showMessageDialog(null,"Datos incorrectos","ERROR",
+            JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btn_ValidarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,7 +226,7 @@ public class FormLog extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_Ingresar;
+    public javax.swing.JButton btn_Validar;
     public javax.swing.JComboBox<String> cbRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
