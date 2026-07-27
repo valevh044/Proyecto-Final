@@ -13,6 +13,10 @@ public class Roles {
 
     public Roles() {
     }
+    
+   public Roles(String tipoRol) {
+        this.tipoRol = tipoRol;
+    }
 
     public int getId_rol() {
         return id_rol;

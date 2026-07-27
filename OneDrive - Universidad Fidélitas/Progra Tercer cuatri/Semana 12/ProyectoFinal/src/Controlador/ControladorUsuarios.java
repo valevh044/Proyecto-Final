@@ -21,47 +21,5 @@ public class ControladorUsuarios {
     private LogSistema modeloLog;
     private Roles modeloRoles;
     private FormLog log;
-    private Conexion conectar = new Conexion();
 
-    public ControladorUsuarios(Usuarios modeloUsuario, FormLog Log) {
-        this.modeloUsuario = modeloUsuario;
-        this.log = log;
-
-        this.log.btn_Validar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UsuarioControlador();
-                LogControlador();
-                RolesControlador();
-            }
-        });
-    }
-
-    public void UsuarioControlador() {
-
-        modeloUsuario = new Usuarios();
-        modeloUsuario.setId_usuario(Integer.parseInt(log.txt_Id.getText().toString()));
-        modeloUsuario.setNombre(log.txt_Nombre.getText());
-        modeloUsuario.setPass(log.txt_Pass.getText());
-        modeloUsuario.setTelefono(Integer.parseInt(log.txt_Telefono.getText().toString()));
-        modeloUsuario.Usuario();
-
-    }
-
-    public void LogControlador() {
-
-        modeloLog = new LogSistema();
-        modeloLog.setId_log(Integer.parseInt(log.txt_Id.getText().toString()));
-        modeloLog.setFecha(Integer.parseInt(log.txt_Fecha.getText().toString()));
-        modeloLog.Log();
-
-    }
-
-    public void RolesControlador() {
-
-        modeloRoles = new Roles();
-        modeloRoles.setId_rol(Integer.parseInt(log.txt_Id.getText().toString()));
-        modeloRoles.setTipoRol(log.cbRol.getSelectedItem().toString());
-        modeloRoles.Roles();
-    }
 }
