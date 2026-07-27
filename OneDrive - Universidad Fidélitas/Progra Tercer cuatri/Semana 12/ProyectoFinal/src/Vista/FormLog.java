@@ -126,7 +126,9 @@ public class FormLog extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,17 +136,36 @@ public class FormLog extends javax.swing.JFrame {
 
     private void btn_ValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ValidarActionPerformed
 
-        if(txt_Cedula.getText().equals("305630197") && txt_Pass.getText().equals("1234"))
-        {  fAdmin.setVisible(true);
-           this.setVisible(false);
+        String cedula = txt_Cedula.getText();
+        String pass = txt_Pass.getText();
+
+        // Administrador
+        if (cedula.equals("305630197") && pass.equals("1234")) {
+
+            fAdmin.setVisible(true);
+            this.dispose();
+
+        } // Despachador
+        else if (cedula.equals("123456789") && pass.equals("5678")) {
+
+            fDespachador.setVisible(true);
+            this.dispose();
+
+        } // Conductor
+        else if (cedula.equals("987654321") && pass.equals("4321")) {
+
+            fConductor.setVisible(true);
+            this.dispose();
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Datos incorrectos",
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE);
+
         }
-        else
-           if( fAdmin.fUsuarios.objUsuarios.buscarUsuario(fAdmin.fUsuarios.listaUsuarios,txt_Cedula.getText(),txt_Pass.getText())==true)
-            JOptionPane.showMessageDialog(null,"Registro Correcto","INFORMACION",
-            JOptionPane.INFORMATION_MESSAGE);
-           else  
-            JOptionPane.showMessageDialog(null,"Datos incorrectos","ERROR",
-            JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btn_ValidarActionPerformed
 
     /**
@@ -194,4 +215,6 @@ public class FormLog extends javax.swing.JFrame {
     public javax.swing.JTextField txt_Pass;
     // End of variables declaration//GEN-END:variables
 public FormAdmin fAdmin = new FormAdmin();
+public FormDespachador fDespachador = new FormDespachador();
+public FormConductor fConductor = new FormConductor();
 }

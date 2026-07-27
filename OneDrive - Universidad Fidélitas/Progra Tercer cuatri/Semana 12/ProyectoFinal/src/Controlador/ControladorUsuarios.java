@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.io.FileOutputStream;
 
+
 public class ControladorUsuarios {
 
     private Usuarios modeloUsuario;

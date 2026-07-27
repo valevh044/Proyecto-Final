@@ -1,5 +1,7 @@
-
 package Vista;
+
+import Controlador.ControladorPaquetes;
+import Modelo.Paquete;
 
 public class FormAdmin extends javax.swing.JFrame {
 
@@ -16,12 +18,14 @@ public class FormAdmin extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         itemUsuarios = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -33,6 +37,8 @@ public class FormAdmin extends javax.swing.JFrame {
         jMenuItem3.setText("jMenuItem3");
 
         jMenuItem4.setText("jMenuItem4");
+
+        jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +71,15 @@ public class FormAdmin extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Paquetes");
+
+        jMenuItem6.setText("Gestión de Paquetes");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Salir");
@@ -90,6 +105,11 @@ public class FormAdmin extends javax.swing.JFrame {
 
         fUsuarios.setVisible(true);
     }//GEN-LAST:event_itemUsuariosActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        fPaquetes.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
         this.setVisible(false);
         fLog.setVisible(true);
@@ -143,8 +163,14 @@ public class FormAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 public FormUsuarios fUsuarios = new FormUsuarios();
-    public static FormLog fLog = new FormLog();
+public static FormLog fLog = new FormLog();
+public FormPaquetes fPaquetes = new FormPaquetes();
+public Paquete modeloPaquete = new Paquete();
+public ControladorPaquetes controladorPaquetes =new ControladorPaquetes(modeloPaquete, fPaquetes);
+
 }
