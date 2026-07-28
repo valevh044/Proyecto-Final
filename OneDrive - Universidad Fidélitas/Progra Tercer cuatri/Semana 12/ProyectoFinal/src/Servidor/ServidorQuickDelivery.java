@@ -11,9 +11,6 @@ package Servidor;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 
 public class ServidorQuickDelivery {
 
@@ -29,12 +26,10 @@ public class ServidorQuickDelivery {
             while (true) {
 
                 Socket cliente = servidor.accept();
-                BufferedReader entrada = new BufferedReader( new InputStreamReader(cliente.getInputStream()));
-                String mensaje = entrada.readLine();
-                System.out.println("Mensaje recibido: " + mensaje);
-                PrintWriter salida = new PrintWriter(cliente.getOutputStream(),true);
-                salida.println("Servidor: estado recibido correctamente");
+
                 System.out.println("Conductor conectado");
+                HiloConductor hilo = new HiloConductor(cliente);
+                hilo.start();
             }
 
         } catch (IOException e) {
