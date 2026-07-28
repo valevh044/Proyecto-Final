@@ -228,7 +228,13 @@ public class FormPaquetes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormPaquetes().setVisible(true);
+
+                FormPaquetes vista = new FormPaquetes();
+                Modelo.Paquete modelo = new Modelo.Paquete();
+
+                new Controlador.ControladorPaquetes(modelo,vista );
+
+                vista.setVisible(true);
             }
         });
     }
