@@ -8,6 +8,8 @@ public class FormUsuarios extends javax.swing.JFrame {
 
     public FormUsuarios() {
         initComponents();
+         objUsuarios.ConsultarUsuarios(listaUsuarios);
+         objUsuarios.MostrarUsuarios(listaUsuarios,tblUsuarios );
     }
 
     public void LimpiarCampos() {
@@ -78,7 +80,7 @@ public class FormUsuarios extends javax.swing.JFrame {
         });
 
         btnEliminar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
-        btnEliminar.setText("Agregar");
+        btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -172,7 +174,7 @@ public class FormUsuarios extends javax.swing.JFrame {
                         .addGap(58, 58, 58)
                         .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -230,14 +232,16 @@ public class FormUsuarios extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         try {
             objUsuarios = new Usuarios();
-            objUsuarios.setId_usuario(Integer.parseInt(txtCedula.getText()));
+
+            objUsuarios.setCedula(txtCedula.getText());
             objUsuarios.setNombre(txtNombre.getText());
             objUsuarios.setTelefono(Integer.parseInt(txtTelefono.getText()));
             objUsuarios.setPass(txtContraseña.getText());
+            objUsuarios.setTipoRol(cbRol.getSelectedItem().toString());
 
             objUsuarios.AgregarPersona(listaUsuarios, objUsuarios);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Formato de cedula incorrecta: " + e.getMessage(),
+            JOptionPane.showMessageDialog(null, "Formato de telefono incorrecta: " + e.getMessage(),
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
             objUsuarios.MostrarUsuarios(listaUsuarios, tblUsuarios);
@@ -247,9 +251,12 @@ public class FormUsuarios extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         objUsuarios = new Usuarios();
+
+        objUsuarios.setCedula(txtCedula.getText());
         objUsuarios.setNombre(txtNombre.getText());
         objUsuarios.setTelefono(Integer.parseInt(txtTelefono.getText()));
         objUsuarios.setPass(txtContraseña.getText());
+        objUsuarios.setTipoRol(cbRol.getSelectedItem().toString());
 
         objUsuarios.ActualizarUsuarios(listaUsuarios, objUsuarios);
 
@@ -260,26 +267,24 @@ public class FormUsuarios extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         objUsuarios = new Usuarios();
-        objUsuarios.setId_usuario(Integer.parseInt(txtCedula.getText()));
-
+        objUsuarios.setCedula(txtCedula.getText());
         objUsuarios.EliminarUsuarios(listaUsuarios, objUsuarios);
-
         objUsuarios.MostrarUsuarios(listaUsuarios, tblUsuarios);
         LimpiarCampos();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void tblUsuariosMousePressed(java.awt.event.MouseEvent evt) {                                        
-      int rec;
-      
-      rec=tblUsuarios.getSelectedRow();
-      txtCedula.setText(tblUsuarios.getValueAt(rec,0).toString());
-      txtNombre.setText(tblUsuarios.getValueAt(rec,1).toString());
-      txtTelefono.setText(tblUsuarios.getValueAt(rec,2).toString());
-      txtContraseña.setText(tblUsuarios.getValueAt(rec,3).toString());
+    private void tblUsuariosMousePressed(java.awt.event.MouseEvent evt) {
+            int rec;
+            rec = tblUsuarios.getSelectedRow();
+            txtCedula.setText(tblUsuarios.getValueAt(rec, 0).toString());
+            txtNombre.setText(tblUsuarios.getValueAt(rec, 1).toString());
+            txtTelefono.setText(tblUsuarios.getValueAt(rec, 2).toString() );
+            txtContraseña.setText(tblUsuarios.getValueAt(rec, 3).toString());
+            cbRol.setSelectedItem( tblUsuarios.getValueAt(rec, 4).toString());
 
-      
-    }                          
-     private void formWindowClosing(java.awt.event.WindowEvent evt) {
+    }
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {
         this.setVisible(false);
     }
 
