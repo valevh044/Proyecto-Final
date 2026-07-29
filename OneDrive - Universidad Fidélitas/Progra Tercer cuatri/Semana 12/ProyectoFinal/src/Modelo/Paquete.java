@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
 
 public class Paquete {
 
@@ -28,7 +29,6 @@ public class Paquete {
         this.estado = estado;
     }
 
-
     public int getId_Paquete() {
         return id_Paquete;
     }
@@ -37,7 +37,7 @@ public class Paquete {
         this.id_Paquete = id_Paquete;
     }
 
-        public java.sql.Date getFecha() {
+    public java.sql.Date getFecha() {
         return fecha;
     }
 
@@ -86,7 +86,7 @@ public class Paquete {
 
             indice = 0;
             while (tbl.next()) {
-                
+
                 tabla.setValueAt(tbl.getInt("id_Paquete"), indice, 0);
                 tabla.setValueAt(tbl.getDate("fecha"), indice, 1);
                 tabla.setValueAt(tbl.getString("codigo_rastreo"), indice, 2);
@@ -95,11 +95,10 @@ public class Paquete {
 
                 indice++;
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
 
-    JOptionPane.showMessageDialog(null,
-            e.getMessage());
-
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage());
 
         }
 
@@ -118,7 +117,7 @@ public class Paquete {
             pst.setString(3, getDestinatario());
             pst.setString(4, getEstado());
             pst.executeUpdate();
-           JOptionPane.showMessageDialog(null,"Paquete registrado correctamente");
+            JOptionPane.showMessageDialog(null, "Paquete registrado correctamente");
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, err.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -137,7 +136,7 @@ public class Paquete {
             pst.setString(4, getEstado());
             pst.setInt(5, getId_Paquete());
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Paquete modificado correctamente");
+            JOptionPane.showMessageDialog(null, "Paquete modificado correctamente");
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, err.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -152,33 +151,60 @@ public class Paquete {
             PreparedStatement pst = objConexion.conectar().prepareStatement(sql);
             pst.setInt(1, getId_Paquete());
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Paquete eliminado correctamente");
+            JOptionPane.showMessageDialog(null, "Paquete eliminado correctamente");
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, err.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private int contarRegistros() {
+
         Conexion conectar = new Conexion();
-        int indice = 0;
+        Connection conexion = null;
+        PreparedStatement consulta = null;
+        ResultSet resultado = null;
+
+        int cantidad = 0;
 
         try {
 
-            PreparedStatement da = conectar.conectar().prepareStatement("select * from Paquetes");
-            ResultSet tbl = da.executeQuery();
+            conexion = conectar.conectar();
 
-            while (tbl.next()) {
-                indice++;
+            consulta = conexion.prepareStatement("SELECT COUNT(*) AS cantidad FROM paquetes" );
+
+            resultado = consulta.executeQuery();
+
+            if (resultado.next()) {
+                cantidad = resultado.getInt("cantidad");
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+
+        } finally {
+
+            try {
+
+                if (resultado != null) {
+                    resultado.close();
+                }
+
+                if (consulta != null) {
+                    consulta.close();
+                }
+
+                if (conexion != null) {
+                    conexion.close();
+                }
+
+            } catch (SQLException e) {
+
+                JOptionPane.showMessageDialog(null,"Error al cerrar la conexión: " + e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE );
+            }
         }
 
-        return indice;
-
+        return cantidad;
     }
-
 
 }
