@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import static Vista.FormAdmin.fLog;
+
 /**
  *
  * @author valev
@@ -104,6 +106,12 @@ public class FormPaquetes extends javax.swing.JFrame {
 
         txtIdpaquete.setEditable(false);
         txtIdpaquete.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdpaquete.setEnabled(false);
+        txtIdpaquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdpaqueteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -197,6 +205,16 @@ public class FormPaquetes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDestinoActionPerformed
 
+    private void txtIdpaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdpaqueteActionPerformed
+txtIdpaquete.setVisible(false);
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtIdpaqueteActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {
+        this.setVisible(false);
+        fAdmin.setVisible(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -232,12 +250,13 @@ public class FormPaquetes extends javax.swing.JFrame {
                 FormPaquetes vista = new FormPaquetes();
                 Modelo.Paquete modelo = new Modelo.Paquete();
 
-                new Controlador.ControladorPaquetes(modelo,vista );
+                new Controlador.ControladorPaquetes(modelo, vista);
 
                 vista.setVisible(true);
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnEliminar;
@@ -258,4 +277,5 @@ public class FormPaquetes extends javax.swing.JFrame {
     public javax.swing.JTextField txtFecha;
     public javax.swing.JTextField txtIdpaquete;
     // End of variables declaration//GEN-END:variables
+  public FormAdmin fAdmin = new FormAdmin();
 }
