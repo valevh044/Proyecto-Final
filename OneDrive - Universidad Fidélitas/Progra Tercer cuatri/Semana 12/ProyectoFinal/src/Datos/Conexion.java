@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
-//jdjdjdjdjdjdjdjdj
+//djdjdjdjdjjd
 public class Conexion {
 
     String url = "jdbc:mysql://localhost:3306/proyecto";
