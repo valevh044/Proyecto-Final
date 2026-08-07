@@ -363,5 +363,5 @@ public class FormUsuarios extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 public ArrayList<Usuarios> listaUsuarios = new ArrayList<Usuarios>();
     public Usuarios objUsuarios = new Usuarios();
-public static FormAdmin admin = new FormAdmin();
+    public static FormAdmin admin = new FormAdmin();
 }

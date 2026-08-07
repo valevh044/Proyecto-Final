@@ -33,10 +33,10 @@ public class FormLog extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txt_Pass = new javax.swing.JTextField();
         txt_Cedula = new javax.swing.JTextField();
         txt_Nombre = new javax.swing.JTextField();
         btn_Validar = new javax.swing.JButton();
+        txt_Pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,8 +54,6 @@ public class FormLog extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jLabel5.setText("Contraseña:");
 
-        txt_Pass.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-
         txt_Cedula.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
         txt_Nombre.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
@@ -67,6 +65,8 @@ public class FormLog extends javax.swing.JFrame {
                 btn_ValidarActionPerformed(evt);
             }
         });
+
+        txt_Pass.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -87,10 +87,11 @@ public class FormLog extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(36, 36, 36)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_Validar)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_Nombre))))))
+                                    .addComponent(txt_Nombre)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btn_Validar)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(txt_Pass)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(jLabel1)))
@@ -113,7 +114,7 @@ public class FormLog extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(44, 44, 44)
                 .addComponent(btn_Validar)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -213,7 +214,7 @@ public class FormLog extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField txt_Cedula;
     public javax.swing.JTextField txt_Nombre;
-    public javax.swing.JTextField txt_Pass;
+    private javax.swing.JPasswordField txt_Pass;
     // End of variables declaration//GEN-END:variables
 public FormAdmin fAdmin = new FormAdmin();
 public FormDespachador fDespachador = new FormDespachador();
