@@ -99,6 +99,7 @@ public class FormAdmin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUsuariosActionPerformed
@@ -112,7 +113,7 @@ public class FormAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
         this.setVisible(false);
-        fLog.setVisible(true);
+        Log.setVisible(true);
     }
 
     /**
@@ -168,7 +169,7 @@ public class FormAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 public FormUsuarios fUsuarios = new FormUsuarios();
-public static FormLog fLog = new FormLog();
+public static FormLog Log = new FormLog();
 public FormPaquetes fPaquetes = new FormPaquetes();
 public Paquete modeloPaquete = new Paquete();
 public ControladorPaquetes controladorPaquetes =new ControladorPaquetes(modeloPaquete, fPaquetes);

@@ -15,6 +15,12 @@ public class FormPaquetes extends javax.swing.JFrame {
      */
     public FormPaquetes() {
         initComponents();
+        txtIdpaquete.setVisible(false);
+    }
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {
+        this.setVisible(false);
+        admin.setVisible(true);
     }
 
     /**
@@ -114,7 +120,7 @@ public class FormPaquetes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -122,7 +128,7 @@ public class FormPaquetes extends javax.swing.JFrame {
                                 .addGap(115, 115, 115)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtFecha)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -191,6 +197,7 @@ public class FormPaquetes extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDestinoActionPerformed
@@ -232,7 +239,7 @@ public class FormPaquetes extends javax.swing.JFrame {
                 FormPaquetes vista = new FormPaquetes();
                 Modelo.Paquete modelo = new Modelo.Paquete();
 
-                new Controlador.ControladorPaquetes(modelo,vista );
+                new Controlador.ControladorPaquetes(modelo, vista);
 
                 vista.setVisible(true);
             }
@@ -258,4 +265,5 @@ public class FormPaquetes extends javax.swing.JFrame {
     public javax.swing.JTextField txtFecha;
     public javax.swing.JTextField txtIdpaquete;
     // End of variables declaration//GEN-END:variables
+public static FormAdmin admin = new FormAdmin();
 }

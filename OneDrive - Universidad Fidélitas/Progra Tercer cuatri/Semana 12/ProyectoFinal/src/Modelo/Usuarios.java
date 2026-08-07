@@ -20,7 +20,6 @@ public class Usuarios extends Roles {
     public Usuarios() {
     }
 
-    // Constructor sobrecargado
     public Usuarios(int id_usuario, String cedula, String nombre,
             String pass, int telefono, String tipoRol) {
 

@@ -1,23 +1,12 @@
 package Controlador;
 
 import Modelo.Paquete;
-import Modelo.EstadoPaquete;
 import Vista.FormPaquetes;
 import Datos.Conexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
-import java.io.FileOutputStream;
-import javax.swing.table.TableModel;
-
 public class ControladorPaquetes {
 
     private Paquete modeloPaquete;

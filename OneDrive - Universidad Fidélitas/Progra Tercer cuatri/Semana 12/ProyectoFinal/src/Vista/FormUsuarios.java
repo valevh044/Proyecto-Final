@@ -1,6 +1,7 @@
 package Vista;
 
 import Modelo.Usuarios;
+import static Vista.FormPaquetes.admin;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -8,8 +9,8 @@ public class FormUsuarios extends javax.swing.JFrame {
 
     public FormUsuarios() {
         initComponents();
-         objUsuarios.ConsultarUsuarios(listaUsuarios);
-         objUsuarios.MostrarUsuarios(listaUsuarios,tblUsuarios );
+        objUsuarios.ConsultarUsuarios(listaUsuarios);
+        objUsuarios.MostrarUsuarios(listaUsuarios, tblUsuarios);
     }
 
     public void LimpiarCampos() {
@@ -227,6 +228,7 @@ public class FormUsuarios extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -274,18 +276,19 @@ public class FormUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblUsuariosMousePressed(java.awt.event.MouseEvent evt) {
-            int rec;
-            rec = tblUsuarios.getSelectedRow();
-            txtCedula.setText(tblUsuarios.getValueAt(rec, 0).toString());
-            txtNombre.setText(tblUsuarios.getValueAt(rec, 1).toString());
-            txtTelefono.setText(tblUsuarios.getValueAt(rec, 2).toString() );
-            txtContraseña.setText(tblUsuarios.getValueAt(rec, 3).toString());
-            cbRol.setSelectedItem( tblUsuarios.getValueAt(rec, 4).toString());
+        int rec;
+        rec = tblUsuarios.getSelectedRow();
+        txtCedula.setText(tblUsuarios.getValueAt(rec, 0).toString());
+        txtNombre.setText(tblUsuarios.getValueAt(rec, 1).toString());
+        txtTelefono.setText(tblUsuarios.getValueAt(rec, 2).toString());
+        txtContraseña.setText(tblUsuarios.getValueAt(rec, 3).toString());
+        cbRol.setSelectedItem(tblUsuarios.getValueAt(rec, 4).toString());
 
     }
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
         this.setVisible(false);
+        admin.setVisible(true);
     }
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
@@ -360,4 +363,5 @@ public class FormUsuarios extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 public ArrayList<Usuarios> listaUsuarios = new ArrayList<Usuarios>();
     public Usuarios objUsuarios = new Usuarios();
+public static FormAdmin admin = new FormAdmin();
 }
