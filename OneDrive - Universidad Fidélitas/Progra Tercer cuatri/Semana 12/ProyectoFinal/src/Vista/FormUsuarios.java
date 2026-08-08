@@ -2,15 +2,13 @@ package Vista;
 
 import Modelo.Usuarios;
 import static Vista.FormPaquetes.admin;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class FormUsuarios extends javax.swing.JFrame {
 
     public FormUsuarios() {
         initComponents();
-        objUsuarios.ConsultarUsuarios(listaUsuarios);
-        objUsuarios.MostrarUsuarios(listaUsuarios, tblUsuarios);
+       
     }
 
     public void LimpiarCampos() {
@@ -232,47 +230,16 @@ public class FormUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        try {
-            objUsuarios = new Usuarios();
-
-            objUsuarios.setCedula(txtCedula.getText());
-            objUsuarios.setNombre(txtNombre.getText());
-            objUsuarios.setTelefono(Integer.parseInt(txtTelefono.getText()));
-            objUsuarios.setPass(txtContraseña.getText());
-            objUsuarios.setTipoRol(cbRol.getSelectedItem().toString());
-
-            objUsuarios.AgregarPersona(listaUsuarios, objUsuarios);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Formato de telefono incorrecta: " + e.getMessage(),
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            objUsuarios.MostrarUsuarios(listaUsuarios, tblUsuarios);
-            LimpiarCampos();
-        }
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        objUsuarios = new Usuarios();
-
-        objUsuarios.setCedula(txtCedula.getText());
-        objUsuarios.setNombre(txtNombre.getText());
-        objUsuarios.setTelefono(Integer.parseInt(txtTelefono.getText()));
-        objUsuarios.setPass(txtContraseña.getText());
-        objUsuarios.setTipoRol(cbRol.getSelectedItem().toString());
-
-        objUsuarios.ActualizarUsuarios(listaUsuarios, objUsuarios);
-
-        objUsuarios.MostrarUsuarios(listaUsuarios, tblUsuarios);
-        LimpiarCampos();
+        
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-        objUsuarios = new Usuarios();
-        objUsuarios.setCedula(txtCedula.getText());
-        objUsuarios.EliminarUsuarios(listaUsuarios, objUsuarios);
-        objUsuarios.MostrarUsuarios(listaUsuarios, tblUsuarios);
-        LimpiarCampos();
+      
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblUsuariosMousePressed(java.awt.event.MouseEvent evt) {
@@ -343,10 +310,10 @@ public class FormUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JComboBox<String> cbRol;
+    public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnAgregar;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JComboBox<String> cbRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -355,13 +322,11 @@ public class FormUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblUsuarios;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtContraseña;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    public javax.swing.JTable tblUsuarios;
+    public javax.swing.JTextField txtCedula;
+    public javax.swing.JTextField txtContraseña;
+    public javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
-public ArrayList<Usuarios> listaUsuarios = new ArrayList<Usuarios>();
-    public Usuarios objUsuarios = new Usuarios();
-    public static FormAdmin admin = new FormAdmin();
+
 }

@@ -2,6 +2,8 @@ package Vista;
 
 import Controlador.ControladorPaquetes;
 import Modelo.Paquete;
+import Controlador.ControladorUsuarios;
+import Modelo.Usuarios;
 
 public class FormAdmin extends javax.swing.JFrame {
 
@@ -169,9 +171,15 @@ public class FormAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 public FormUsuarios fUsuarios = new FormUsuarios();
+public Usuarios modeloUsuario = new Usuarios();
+
+public ControladorUsuarios controladorUsuarios =new ControladorUsuarios(modeloUsuario, fUsuarios);
+
 public static FormLog Log = new FormLog();
+
 public FormPaquetes fPaquetes = new FormPaquetes();
 public Paquete modeloPaquete = new Paquete();
-public ControladorPaquetes controladorPaquetes =new ControladorPaquetes(modeloPaquete, fPaquetes);
+
+public ControladorPaquetes controladorPaquetes = new ControladorPaquetes(modeloPaquete, fPaquetes);
 
 }
