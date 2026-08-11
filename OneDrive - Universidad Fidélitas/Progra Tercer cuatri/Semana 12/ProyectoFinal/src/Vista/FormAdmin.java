@@ -4,6 +4,8 @@ import Controlador.ControladorPaquetes;
 import Modelo.Paquete;
 import Controlador.ControladorUsuarios;
 import Modelo.Usuarios;
+import Controlador.ControladorVehiculos;
+import Modelo.Vehiculo;
 
 public class FormAdmin extends javax.swing.JFrame {
 
@@ -26,6 +28,7 @@ public class FormAdmin extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         itemUsuarios = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -70,6 +73,15 @@ public class FormAdmin extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Vehículos");
+
+        jMenuItem7.setText("Gestión Vehículos");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Paquetes");
@@ -113,6 +125,12 @@ public class FormAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         fPaquetes.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+
+        // TODO add your handling code here:
+        fVehiculos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
         this.setVisible(false);
         Log.setVisible(true);
@@ -168,6 +186,7 @@ public class FormAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 public FormUsuarios fUsuarios = new FormUsuarios();
@@ -181,5 +200,8 @@ public FormPaquetes fPaquetes = new FormPaquetes();
 public Paquete modeloPaquete = new Paquete();
 
 public ControladorPaquetes controladorPaquetes = new ControladorPaquetes(modeloPaquete, fPaquetes);
+public FormVehiculos fVehiculos = new FormVehiculos();
+public Vehiculo modeloVehiculo = new Vehiculo();
 
+public ControladorVehiculos controladorVehiculos = new ControladorVehiculos(modeloVehiculo, fVehiculos);
 }

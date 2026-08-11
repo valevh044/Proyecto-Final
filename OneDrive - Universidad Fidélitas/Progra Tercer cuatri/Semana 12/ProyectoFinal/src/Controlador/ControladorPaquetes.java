@@ -15,7 +15,6 @@ public class ControladorPaquetes {
     
 
     public ControladorPaquetes(Paquete modeloPaquete, FormPaquetes vista) {
-        System.out.println("Controlador creado");
         this.modeloPaquete = modeloPaquete;
         this.vista = vista;
         mostrarDatos();
