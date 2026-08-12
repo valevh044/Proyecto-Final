@@ -1,5 +1,4 @@
 package Modelo;
-
 import Datos.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,26 +8,21 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Vehiculo {
-
     private int id_vehiculo;
     private String placa;
     private String modelo;
     private String estado;
     private String tipo;
-    private int id_conductor;
 
-    public Vehiculo() {
-    }
-
-    public Vehiculo(int id_vehiculo, String placa, String modelo,
-            String estado, String tipo, int id_conductor) {
-
+    public Vehiculo(int id_vehiculo, String placa, String modelo, String estado) {
         this.id_vehiculo = id_vehiculo;
         this.placa = placa;
         this.modelo = modelo;
         this.estado = estado;
         this.tipo = tipo;
-        this.id_conductor = id_conductor;
+    }
+
+    public Vehiculo() {
     }
 
     public int getId_vehiculo() {
@@ -62,48 +56,31 @@ public class Vehiculo {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    public String getTipo() {
+     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    public int getId_conductor() {
-        return id_conductor;
-    }
-
-    public void setId_conductor(int id_conductor) {
-        this.id_conductor = id_conductor;
-    }
-
-    public void mostrarVehiculos(JTable tblVehiculos) {
-
+     public void mostrarVehiculos(JTable tblVehiculos) {
         Conexion conectar = new Conexion();
 
         DefaultTableModel tabla = new DefaultTableModel();
         int indice;
-
         tabla.addColumn("ID VEHICULO");
         tabla.addColumn("PLACA");
         tabla.addColumn("MODELO");
         tabla.addColumn("ESTADO");
         tabla.addColumn("TIPO");
-
         tabla.setRowCount(contarVehiculos());
         try {
-
-            PreparedStatement da
-                    = conectar.conectar().prepareStatement("SELECT * FROM vehiculos");
-
+            PreparedStatement da = conectar.conectar().prepareStatement("select * from vehiculos");
             ResultSet tbl = da.executeQuery();
 
             indice = 0;
-
             while (tbl.next()) {
-
+                
                 tabla.setValueAt(tbl.getInt("id_vehiculo"), indice, 0);
                 tabla.setValueAt(tbl.getString("placa"), indice, 1);
                 tabla.setValueAt(tbl.getString("modelo"), indice, 2);
@@ -112,50 +89,41 @@ public class Vehiculo {
 
                 indice++;
             }
+        } catch(SQLException e){
 
-        } catch (SQLException e) {
+    JOptionPane.showMessageDialog(null,
+            e.getMessage());
 
-            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+
         }
 
         tblVehiculos.setModel(tabla);
     }
 
     public void Guardar() {
-
         Conexion objConexion = new Conexion();
         String sql;
 
         try {
-
-            sql = "INSERT INTO vehiculos "
-                    + "(placa, modelo, estado, tipo) "
-                    + "VALUES (?,?,?,?)";
-
+            sql = "INSERT INTO vehiculos(placa, modelo, estado, tipo) VALUES (?,?,?,?)";
             PreparedStatement pst = objConexion.conectar().prepareStatement(sql);
             pst.setString(1, getPlaca());
             pst.setString(2, getModelo());
             pst.setString(3, getEstado());
             pst.setString(4, getTipo());
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Vehículo registrado correctamente");
-
+           JOptionPane.showMessageDialog(null,"Vehículo registrado correctamente");
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, err.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void Modificar() {
-
         Conexion objConexion = new Conexion();
         String sql;
 
         try {
-
-            sql = "UPDATE vehiculos "
-                    + "SET placa=?, modelo=?, estado=?, tipo=? "
-                    + "WHERE id_vehiculo=?";
-
+            sql = "update Vehiculos set placa=?,modelo=?,estado=?, tipo=? where id_vehiculo=?";
             PreparedStatement pst = objConexion.conectar().prepareStatement(sql);
             pst.setString(1, getPlaca());
             pst.setString(2, getModelo());
@@ -163,28 +131,22 @@ public class Vehiculo {
             pst.setString(4, getTipo());
             pst.setInt(5, getId_vehiculo());
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Vehículo modificado correctamente");
-
+            JOptionPane.showMessageDialog(null,"Vehículo modificado correctamente");
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, err.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void Eliminar() {
-
         Conexion objConexion = new Conexion();
         String sql;
 
         try {
-
-            sql = "DELETE FROM vehiculos "
-                    + "WHERE id_vehiculo=?";
-
+            sql = "delete from Vehiculos where id_vehiculo=?";
             PreparedStatement pst = objConexion.conectar().prepareStatement(sql);
             pst.setInt(1, getId_vehiculo());
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Vehículo eliminado correctamente");
-
+            JOptionPane.showMessageDialog(null,"Vehiculo eliminado correctamente");
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, err.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -196,7 +158,7 @@ public class Vehiculo {
 
         try {
 
-            PreparedStatement da = conectar.conectar().prepareStatement("SELECT * FROM vehiculos");
+            PreparedStatement da = conectar.conectar().prepareStatement("select * from vehiculos");
             ResultSet tbl = da.executeQuery();
 
             while (tbl.next()) {
@@ -209,5 +171,6 @@ public class Vehiculo {
         }
 
         return indice;
+
     }
 }

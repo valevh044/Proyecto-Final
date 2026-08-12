@@ -145,19 +145,19 @@ public class FormLog extends javax.swing.JFrame {
         if (cedula.equals("305630197") && pass.equals("1234")) {
 
             fAdmin.setVisible(true);
-            this.dispose();
+            this.setVisible(false);
 
         } // Despachador
         else if (cedula.equals("123456789") && pass.equals("5678")) {
 
             fDespachador.setVisible(true);
-            this.dispose();
+            this.setVisible(false);
 
         } // Conductor
         else if (cedula.equals("987654321") && pass.equals("4321")) {
 
             fConductor.setVisible(true);
-            this.dispose();
+            this.setVisible(false);
 
         } else {
 
@@ -217,6 +217,6 @@ public class FormLog extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_Pass;
     // End of variables declaration//GEN-END:variables
 public FormAdmin fAdmin = new FormAdmin();
-public FormDespachador fDespachador = new FormDespachador();
-public FormConductor fConductor = new FormConductor();
+    public FormDespachador fDespachador = new FormDespachador();
+    public FormConductor fConductor = new FormConductor();
 }

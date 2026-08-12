@@ -1,12 +1,17 @@
 package Controlador;
 
 import Datos.Conexion;
+import Modelo.Conductor;
 import Modelo.Vehiculo;
 import Vista.FormVehiculos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class ControladorVehiculos {
 
@@ -99,5 +104,6 @@ public class ControladorVehiculos {
 
         modeloVehiculo.Eliminar();
 
+    
     }
 }
