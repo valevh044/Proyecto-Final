@@ -17,6 +17,7 @@ public class FormPaquetes extends javax.swing.JFrame {
         initComponents();
         txtIdpaquete.setVisible(false);
     }
+    
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
         this.setVisible(false);
@@ -97,7 +98,7 @@ public class FormPaquetes extends javax.swing.JFrame {
         });
 
         cbEstado.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En tránsito", "Entregado", "Incidencia" }));
+        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En tránsito", "Entregado", "Incidencia", "Pendiente" }));
 
         btnGuardar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         btnGuardar.setText("Guardar");
