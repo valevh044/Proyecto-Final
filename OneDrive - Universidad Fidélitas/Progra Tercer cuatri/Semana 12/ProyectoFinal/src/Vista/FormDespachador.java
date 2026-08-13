@@ -1,26 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
 
 import Controlador.ControladorDespachador;
 import javax.swing.JTable;
 
-/**
- *
- * @author valev
- */
+
 public class FormDespachador extends javax.swing.JFrame {
 
     private ControladorDespachador controlador;
 
-    /**
-     * Creates new form FormDespachador
-     */
     public FormDespachador() {
         initComponents();
         controlador = new ControladorDespachador(this);
+        txtPaquete.setEditable(false);
     }
 
     public JTable getTblPaquetes() {
@@ -53,6 +45,7 @@ public class FormDespachador extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
+        tblPaquetes.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         tblPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -66,6 +59,7 @@ public class FormDespachador extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblPaquetes);
 
+        tblConductores.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         tblConductores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -201,9 +195,9 @@ public class FormDespachador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblConductores;
+    public javax.swing.JTable tblConductores;
     public javax.swing.JTable tblPaquetes;
-    private javax.swing.JTextField txtPaquete;
+    public javax.swing.JTextField txtPaquete;
     private javax.swing.JTextField txtVehiculo;
     // End of variables declaration//GEN-END:variables
 

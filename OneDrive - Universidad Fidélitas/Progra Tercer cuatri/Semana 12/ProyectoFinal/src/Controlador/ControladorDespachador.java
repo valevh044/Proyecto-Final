@@ -20,6 +20,14 @@ public class ControladorDespachador {
         this.vista = vista;
         this.asignacionPaquete = new AsignacionPaquete();
         cargarTablaPaquetes();
+        
+        this.vista.tblPaquetes.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                int rec = vista.tblPaquetes.getSelectedRow();
+
+                vista.txtPaquete.setText(vista.tblPaquetes.getValueAt(rec, 0).toString());
+            }
+        });
     }
     public void cargarTablaPaquetes() {
         try {

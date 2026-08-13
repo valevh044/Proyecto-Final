@@ -1,6 +1,9 @@
 package Modelo;
 
 import Datos.Conexion;
+import Vista.FormAdmin;
+import Vista.FormConductor;
+import Vista.FormDespachador;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -102,14 +105,24 @@ public class Usuarios extends Roles {
 
             pstmt.executeUpdate();
 
-            JOptionPane.showMessageDialog(null,"Usuario registrado correctamente");
+            if (idRol == 2) {
+
+                String sqlConductor = "INSERT INTO conductores (cedula, nombre, telefono) VALUES (?,?,?)";
+
+                PreparedStatement pstmtConductor
+                        = conectar.conectar().prepareStatement(sqlConductor);
+
+                pstmtConductor.setString(1, getCedula());
+
+                pstmtConductor.executeUpdate();
+            }
+
+            JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
 
             return true;
 
         } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, "Error al guardar en la base de datos: "+ e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Error al guardar en la base de datos: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -144,16 +157,16 @@ public class Usuarios extends Roles {
 
             if (filas > 0) {
 
-                JOptionPane.showMessageDialog(null,"Usuario actualizado correctamente");
+                JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente");
 
             } else {
 
-                JOptionPane.showMessageDialog(null,"La cédula no existe","ERROR",JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog(null, "La cédula no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (SQLException e) {
 
-            JOptionPane.showMessageDialog(null,"Error al actualizar usuario: " + e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog(null, "Error al actualizar usuario: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -166,7 +179,7 @@ public class Usuarios extends Roles {
             String sql
                     = "DELETE FROM usuarios WHERE cedula = ?";
 
-            PreparedStatement pstmt= conectar.conectar().prepareStatement(sql);
+            PreparedStatement pstmt = conectar.conectar().prepareStatement(sql);
 
             pstmt.setString(1, getCedula());
 
@@ -174,16 +187,16 @@ public class Usuarios extends Roles {
 
             if (filas > 0) {
 
-                JOptionPane.showMessageDialog(null,"Usuario eliminado correctamente");
+                JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
 
             } else {
 
-                JOptionPane.showMessageDialog(null,"La cédula no existe","ERROR",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La cédula no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (SQLException e) {
 
-            JOptionPane.showMessageDialog(null, "Error al eliminar usuario: "+ e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al eliminar usuario: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -236,7 +249,7 @@ public class Usuarios extends Roles {
 
             JOptionPane.showMessageDialog(
                     null,
-                    "Error al consultar usuarios: "+ e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE );
+                    "Error al consultar usuarios: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

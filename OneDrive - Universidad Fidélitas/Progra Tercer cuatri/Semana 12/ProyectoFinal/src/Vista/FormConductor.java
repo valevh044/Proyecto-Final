@@ -15,7 +15,6 @@ public class FormConductor extends javax.swing.JFrame {
      */
     public FormConductor() {
         initComponents();
-        txtIdConductor.setVisible(false);
     }
 
     /**
@@ -28,41 +27,32 @@ public class FormConductor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnRegistrar = new javax.swing.JButton();
-        txtIdConductor = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtCedula = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        tblPaquetes = new javax.swing.JTable();
+        cbEstadoAct = new javax.swing.JComboBox<>();
+        jTextField2 = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
         jLabel1.setText("Gestión de Vehículos");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
-        jLabel2.setText("Gestión de Conductor");
+        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        jLabel2.setText("Estado actual del paquete:");
 
-        jLabel4.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        jLabel4.setText("Nombre:");
+        jLabel3.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        jLabel3.setText("Incidencia:");
 
-        jLabel5.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        jLabel5.setText("Cédula:");
-
-        jLabel6.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        jLabel6.setText("Teléfono:");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -73,24 +63,15 @@ public class FormConductor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblPaquetes);
 
-        btnRegistrar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
-        btnRegistrar.setText("Registrar");
+        cbEstadoAct.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        cbEstadoAct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En tránsito", "Entregado", "Incidencia" }));
 
-        txtIdConductor.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
 
-        txtNombre.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-
-        txtCedula.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-
-        txtTelefono.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-
-        btnModificar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
-        btnModificar.setText("Modificar");
-
-        btnEliminar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
+        btnGuardar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        btnGuardar.setText("Guadar Cambios");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,58 +80,31 @@ public class FormConductor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtIdConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(27, 27, 27)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnRegistrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnModificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEliminar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(cbEstadoAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(btnGuardar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtIdConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(cbEstadoAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrar)
-                    .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -158,11 +112,13 @@ public class FormConductor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,20 +161,15 @@ public class FormConductor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnEliminar;
-    public javax.swing.JButton btnModificar;
-    public javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cbEstadoAct;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    public javax.swing.JTextField txtCedula;
-    public javax.swing.JTextField txtIdConductor;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tblPaquetes;
     // End of variables declaration//GEN-END:variables
 }
