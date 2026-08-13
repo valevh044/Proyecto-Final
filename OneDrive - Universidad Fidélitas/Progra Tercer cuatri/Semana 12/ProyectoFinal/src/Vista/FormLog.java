@@ -4,7 +4,6 @@
  */
 package Vista;
 
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +16,7 @@ public class FormLog extends javax.swing.JFrame {
      */
     public FormLog() {
         initComponents();
+        new Controlador.ControladorLog(this);
     }
 
     /**
@@ -31,10 +31,8 @@ public class FormLog extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txt_Cedula = new javax.swing.JTextField();
-        txt_Nombre = new javax.swing.JTextField();
         btn_Validar = new javax.swing.JButton();
         txt_Pass = new javax.swing.JPasswordField();
 
@@ -48,15 +46,10 @@ public class FormLog extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jLabel2.setText("Cédula:");
 
-        jLabel3.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        jLabel3.setText("Nombre:");
-
         jLabel5.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jLabel5.setText("Contraseña:");
 
         txt_Cedula.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-
-        txt_Nombre.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
         btn_Validar.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         btn_Validar.setText("Validar");
@@ -76,22 +69,15 @@ public class FormLog extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(77, 77, 77)
-                                .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_Nombre)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btn_Validar)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(txt_Pass)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btn_Validar)
+                                .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_Cedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(jLabel1)))
@@ -102,19 +88,15 @@ public class FormLog extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(27, 27, 27)
                 .addComponent(btn_Validar)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -129,7 +111,7 @@ public class FormLog extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,36 +120,6 @@ public class FormLog extends javax.swing.JFrame {
 
     private void btn_ValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ValidarActionPerformed
 
-        String cedula = txt_Cedula.getText();
-        String pass = txt_Pass.getText();
-
-        // Administrador
-        if (cedula.equals("305630197") && pass.equals("1234")) {
-
-            fAdmin.setVisible(true);
-            this.setVisible(false);
-
-        } // Despachador
-        else if (cedula.equals("123456789") && pass.equals("5678")) {
-
-            fDespachador.setVisible(true);
-            this.setVisible(false);
-
-        } // Conductor
-        else if (cedula.equals("987654321") && pass.equals("4321")) {
-
-            fConductor.setVisible(true);
-            this.setVisible(false);
-
-        } else {
-
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Datos incorrectos",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-
-        }
     }//GEN-LAST:event_btn_ValidarActionPerformed
 
     /**
@@ -209,14 +161,10 @@ public class FormLog extends javax.swing.JFrame {
     public javax.swing.JButton btn_Validar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField txt_Cedula;
-    public javax.swing.JTextField txt_Nombre;
-    private javax.swing.JPasswordField txt_Pass;
+    public javax.swing.JPasswordField txt_Pass;
     // End of variables declaration//GEN-END:variables
-public FormAdmin fAdmin = new FormAdmin();
-    public FormDespachador fDespachador = new FormDespachador();
-    public FormConductor fConductor = new FormConductor();
+
 }

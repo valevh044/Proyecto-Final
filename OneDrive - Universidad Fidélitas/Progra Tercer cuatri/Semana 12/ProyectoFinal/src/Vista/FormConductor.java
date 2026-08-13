@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Controlador.ControladorConductor;
+
 /**
  *
  * @author valev
@@ -13,8 +15,9 @@ public class FormConductor extends javax.swing.JFrame {
     /**
      * Creates new form FormConductor
      */
-    public FormConductor() {
+    public FormConductor(int idConductor) {
         initComponents();
+        new ControladorConductor(this,idConductor );
     }
 
     /**
@@ -34,7 +37,7 @@ public class FormConductor extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPaquetes = new javax.swing.JTable();
         cbEstadoAct = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        txtIncidencia = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
@@ -68,7 +71,7 @@ public class FormConductor extends javax.swing.JFrame {
         cbEstadoAct.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         cbEstadoAct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En tránsito", "Entregado", "Incidencia" }));
 
-        jTextField2.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        txtIncidencia.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
 
         btnGuardar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         btnGuardar.setText("Guadar Cambios");
@@ -80,7 +83,7 @@ public class FormConductor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIncidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -100,7 +103,7 @@ public class FormConductor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIncidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,21 +158,21 @@ public class FormConductor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormConductor().setVisible(true);
+                new FormConductor(1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> cbEstadoAct;
+    public javax.swing.JButton btnGuardar;
+    public javax.swing.JComboBox<String> cbEstadoAct;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTable tblPaquetes;
+    public javax.swing.JTable tblPaquetes;
+    public javax.swing.JTextField txtIncidencia;
     // End of variables declaration//GEN-END:variables
 }

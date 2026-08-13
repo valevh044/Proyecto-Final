@@ -8,7 +8,7 @@ public class FormUsuarios extends javax.swing.JFrame {
 
     public FormUsuarios() {
         initComponents();
-       
+
     }
 
     public void LimpiarCampos() {
@@ -230,16 +230,16 @@ public class FormUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-      
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblUsuariosMousePressed(java.awt.event.MouseEvent evt) {
@@ -304,7 +304,13 @@ public class FormUsuarios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormUsuarios().setVisible(true);
+
+                FormUsuarios vista = new FormUsuarios();
+                Modelo.Usuarios modelo = new Modelo.Usuarios();
+
+                new Controlador.ControladorUsuarios(modelo, vista);
+
+                vista.setVisible(true);
             }
         });
     }

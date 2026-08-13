@@ -1,15 +1,13 @@
 package Modelo;
 
-import java.sql.PreparedStatement;
 import Datos.Conexion;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class LogSistema {
 
     private int id_log;
-    private int fecha;
+    private int id_usuario;
 
     public LogSistema() {
     }
@@ -22,12 +20,12 @@ public class LogSistema {
         this.id_log = id_log;
     }
 
-    public int getFecha() {
-        return fecha;
+    public int getId_usuario() {
+        return id_usuario;
     }
 
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public void Log() {
@@ -35,11 +33,12 @@ public class LogSistema {
         Conexion conectar = new Conexion();
 
         try {
-            String sql = "INSERT INTO Log VALUES (?,?)";
 
-            PreparedStatement pstmt = conectar.conectar().prepareStatement(sql);
-            pstmt.setInt(1, getId_log());
-            pstmt.setInt(2, getFecha());
+            String sql = "INSERT INTO log (fecha, id_usuario) "
+                    + "VALUES (CURDATE(), ?)";
+
+            PreparedStatement pstmt= conectar.conectar().prepareStatement(sql);
+            pstmt.setInt(1, getId_usuario());
             pstmt.executeUpdate();
 
         } catch (SQLException e) {

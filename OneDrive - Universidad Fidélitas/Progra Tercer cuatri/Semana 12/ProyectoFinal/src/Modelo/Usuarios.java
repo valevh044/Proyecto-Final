@@ -26,7 +26,6 @@ public class Usuarios extends Roles {
             String pass, int telefono, String tipoRol) {
 
         super(tipoRol);
-
         this.id_usuario = id_usuario;
         this.cedula = cedula;
         this.nombre = nombre;
@@ -75,9 +74,7 @@ public class Usuarios extends Roles {
     }
 
     public boolean Usuario() {
-
         Conexion conectar = new Conexion();
-
         try {
 
             int idRol = 0;
@@ -94,31 +91,40 @@ public class Usuarios extends Roles {
                     + "(cedula, nombre, password, telefono, id_rol) "
                     + "VALUES (?, ?, ?, ?, ?)";
 
-            PreparedStatement pstmt
-                    = conectar.conectar().prepareStatement(sql);
-
+            PreparedStatement pstmt = conectar.conectar().prepareStatement(sql);
             pstmt.setString(1, getCedula());
             pstmt.setString(2, getNombre());
             pstmt.setString(3, getPass());
             pstmt.setInt(4, getTelefono());
             pstmt.setInt(5, idRol);
-
             pstmt.executeUpdate();
+
+            int idUsuario = 0;
+            String sqlBuscar = "SELECT id_usuario FROM usuarios WHERE cedula = ?";
+            PreparedStatement pstmtBuscar = conectar.conectar().prepareStatement(sqlBuscar);
+            pstmtBuscar.setString(1, getCedula());
+            ResultSet rs = pstmtBuscar.executeQuery();
+
+            if (rs.next()) {
+                idUsuario = rs.getInt("id_usuario");
+            }
 
             if (idRol == 2) {
 
-                String sqlConductor = "INSERT INTO conductores (cedula, nombre, telefono) VALUES (?,?,?)";
+                String sqlConductor
+                        = "INSERT INTO conductores "
+                        + "(cedula, nombre, telefono, id_usuario) "
+                        + "VALUES (?,?,?,?)";
 
-                PreparedStatement pstmtConductor
-                        = conectar.conectar().prepareStatement(sqlConductor);
-
+                PreparedStatement pstmtConductor = conectar.conectar().prepareStatement(sqlConductor);
                 pstmtConductor.setString(1, getCedula());
-
+                pstmtConductor.setString(2, getNombre());
+                pstmtConductor.setInt(3, getTelefono());
+                pstmtConductor.setInt(4, idUsuario);
                 pstmtConductor.executeUpdate();
             }
 
             JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
-
             return true;
 
         } catch (SQLException e) {
@@ -128,7 +134,6 @@ public class Usuarios extends Roles {
     }
 
     public void ActualizarUsuarioBD() {
-
         Conexion conectar = new Conexion();
 
         try {
@@ -144,15 +149,12 @@ public class Usuarios extends Roles {
             }
 
             String sql = "UPDATE usuarios " + "SET nombre = ?, password = ?, telefono = ?, id_rol = ? " + "WHERE cedula = ?";
-
             PreparedStatement pstmt = conectar.conectar().prepareStatement(sql);
-
             pstmt.setString(1, getNombre());
             pstmt.setString(2, getPass());
             pstmt.setInt(3, getTelefono());
             pstmt.setInt(4, idRol);
             pstmt.setString(5, getCedula());
-
             int filas = pstmt.executeUpdate();
 
             if (filas > 0) {
@@ -171,20 +173,14 @@ public class Usuarios extends Roles {
     }
 
     public void EliminarUsuarioBD() {
-
         Conexion conectar = new Conexion();
 
         try {
 
-            String sql
-                    = "DELETE FROM usuarios WHERE cedula = ?";
-
+            String sql = "DELETE FROM usuarios WHERE cedula = ?";
             PreparedStatement pstmt = conectar.conectar().prepareStatement(sql);
-
             pstmt.setString(1, getCedula());
-
             int filas = pstmt.executeUpdate();
-
             if (filas > 0) {
 
                 JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
@@ -203,9 +199,7 @@ public class Usuarios extends Roles {
     public void mostrarUsuariosBD(JTable tablaUsuarios) {
 
         Conexion conectar = new Conexion();
-
-        DefaultTableModel tabla
-                = new DefaultTableModel();
+        DefaultTableModel tabla = new DefaultTableModel();
 
         tabla.addColumn("CEDULA");
         tabla.addColumn("NOMBRE");
@@ -225,9 +219,7 @@ public class Usuarios extends Roles {
                     + "INNER JOIN roles "
                     + "ON usuarios.id_rol = roles.id_rol";
 
-            PreparedStatement pstmt
-                    = conectar.conectar().prepareStatement(sql);
-
+            PreparedStatement pstmt = conectar.conectar().prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -247,9 +239,94 @@ public class Usuarios extends Roles {
 
         } catch (SQLException e) {
 
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Error al consultar usuarios: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al consultar usuarios: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public boolean IniciarSesion(String cedula, String pass) {
+
+        Conexion conectar = new Conexion();
+
+        try {
+
+            String sql = "SELECT id_usuario, nombre, id_rol "
+                    + "FROM usuarios "
+                    + "WHERE cedula = ? AND password = ?";
+
+            PreparedStatement pstmt
+                    = conectar.conectar().prepareStatement(sql);
+
+            pstmt.setString(1, cedula);
+            pstmt.setString(2, pass);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+
+                int idUsuario = rs.getInt("id_usuario");
+                int idRol = rs.getInt("id_rol");
+
+                LogSistema log = new LogSistema();
+                log.setId_usuario(idUsuario);
+                log.Log();
+
+                if (idRol == 1) {
+
+                    FormAdmin admin = new FormAdmin();
+                    admin.setVisible(true);
+
+                    return true;
+
+                } else if (idRol == 2) {
+
+                    String sqlConductor
+                            = "SELECT id_conductor "
+                            + "FROM conductores "
+                            + "WHERE id_usuario = ?";
+
+                    PreparedStatement pstmtConductor= conectar.conectar().prepareStatement(sqlConductor);
+                    pstmtConductor.setInt(1, idUsuario);
+                    ResultSet rsConductor= pstmtConductor.executeQuery();
+
+                    if (rsConductor.next()) {
+
+                        int idConductor= rsConductor.getInt("id_conductor");
+                        FormConductor conductor= new FormConductor(idConductor);
+                        conductor.setVisible(true);
+
+                        return true;
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null,"El usuario conductor no tiene registro en conductores","ERROR",JOptionPane.ERROR_MESSAGE);
+
+                        return false;
+                    }
+
+                } else if (idRol == 3) {
+
+                    FormDespachador despachador = new FormDespachador();
+                    despachador.setVisible(true);
+
+                    return true;
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null,"El usuario no tiene un rol válido","ERROR",JOptionPane.ERROR_MESSAGE );
+
+                    return false;
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(null,"Cédula o contraseña incorrecta","ERROR",JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null,"Error al iniciar sesión: " + e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
 }

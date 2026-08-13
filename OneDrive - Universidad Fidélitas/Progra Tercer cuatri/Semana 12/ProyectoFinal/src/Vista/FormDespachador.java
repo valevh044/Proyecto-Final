@@ -77,7 +77,7 @@ public class FormDespachador extends javax.swing.JFrame {
         jLabel1.setText("Asignaciones de Paquetes");
 
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        jLabel2.setText("Conductores:");
+        jLabel2.setText("Vehículo:");
 
         btnAsignar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         btnAsignar.setText("Asignar");
@@ -198,7 +198,7 @@ public class FormDespachador extends javax.swing.JFrame {
     public javax.swing.JTable tblConductores;
     public javax.swing.JTable tblPaquetes;
     public javax.swing.JTextField txtPaquete;
-    private javax.swing.JTextField txtVehiculo;
+    public javax.swing.JTextField txtVehiculo;
     // End of variables declaration//GEN-END:variables
 
 }
