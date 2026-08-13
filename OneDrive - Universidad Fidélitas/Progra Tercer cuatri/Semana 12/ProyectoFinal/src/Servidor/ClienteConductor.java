@@ -19,7 +19,7 @@ public class ClienteConductor {
 
         try {
 
-            cliente = new Socket("localhost", 5000);
+            cliente = new Socket("localhost", 6000);
             salida = new PrintWriter(cliente.getOutputStream(),true);
             entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()
                     )

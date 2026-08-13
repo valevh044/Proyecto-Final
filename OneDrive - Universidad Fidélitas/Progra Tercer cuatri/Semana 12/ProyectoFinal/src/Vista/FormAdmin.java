@@ -6,6 +6,9 @@ import Controlador.ControladorUsuarios;
 import Modelo.Usuarios;
 import Controlador.ControladorVehiculos;
 import Modelo.Vehiculo;
+import Servidor.ServidorQuickDelivery;
+import Servidor.HiloConductor;
+import javax.swing.SwingUtilities;
 
 public class FormAdmin extends javax.swing.JFrame {
 
@@ -14,6 +17,12 @@ public class FormAdmin extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
+
+    public void mostrarMensaje(String mensaje) {
+        SwingUtilities.invokeLater(() -> {
+            txtArea.append(mensaje + "\n");
+        });
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -25,7 +34,8 @@ public class FormAdmin extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtArea = new javax.swing.JTextArea();
+        btnServidor = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         itemUsuarios = new javax.swing.JMenuItem();
@@ -51,25 +61,37 @@ public class FormAdmin extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
+
+        btnServidor.setText("Iniciar Servidor");
+        btnServidor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnServidorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addComponent(btnServidor)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addComponent(btnServidor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jMenu2.setText("Usuarios");
@@ -143,6 +165,19 @@ public class FormAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         fVehiculos.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void btnServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServidorActionPerformed
+        // TODO add your handling code here:private void btnServidorActionPerformed(java.awt.event.ActionEvent evt) {
+
+        ServidorQuickDelivery servidor
+                = new ServidorQuickDelivery(this);
+
+        Thread hiloServidor = new Thread(() -> {
+            servidor.iniciarServidor();
+        });
+
+        hiloServidor.start();
+    }//GEN-LAST:event_btnServidorActionPerformed
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
         this.setVisible(false);
         Log.setVisible(true);
@@ -162,16 +197,24 @@ public class FormAdmin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormAdmin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormAdmin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormAdmin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormAdmin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -185,6 +228,7 @@ public class FormAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnServidor;
     private javax.swing.JMenuItem itemUsuarios;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -201,21 +245,21 @@ public class FormAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 public FormUsuarios fUsuarios = new FormUsuarios();
-public Usuarios modeloUsuario = new Usuarios();
+    public Usuarios modeloUsuario = new Usuarios();
 
-public ControladorUsuarios controladorUsuarios =new ControladorUsuarios(modeloUsuario, fUsuarios);
+    public ControladorUsuarios controladorUsuarios = new ControladorUsuarios(modeloUsuario, fUsuarios);
 
-public static FormLog Log = new FormLog();
+    public static FormLog Log = new FormLog();
 
-public FormPaquetes fPaquetes = new FormPaquetes();
-public Paquete modeloPaquete = new Paquete();
+    public FormPaquetes fPaquetes = new FormPaquetes();
+    public Paquete modeloPaquete = new Paquete();
 
-public ControladorPaquetes controladorPaquetes = new ControladorPaquetes(modeloPaquete, fPaquetes);
-public FormVehiculos fVehiculos = new FormVehiculos();
-public Vehiculo modeloVehiculo = new Vehiculo();
+    public ControladorPaquetes controladorPaquetes = new ControladorPaquetes(modeloPaquete, fPaquetes);
+    public FormVehiculos fVehiculos = new FormVehiculos();
+    public Vehiculo modeloVehiculo = new Vehiculo();
 
-public ControladorVehiculos controladorVehiculos = new ControladorVehiculos(modeloVehiculo, fVehiculos);
+    public ControladorVehiculos controladorVehiculos = new ControladorVehiculos(modeloVehiculo, fVehiculos);
 }

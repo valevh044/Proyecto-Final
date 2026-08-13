@@ -1,5 +1,6 @@
 package Servidor;
 
+import Vista.FormAdmin;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,9 +10,11 @@ import java.net.Socket;
 public class HiloConductor extends Thread {
 
     private Socket cliente;
+    private FormAdmin formAdmin;
 
-    public HiloConductor(Socket cliente) {
+    public HiloConductor(Socket cliente, FormAdmin formAdmin) {
         this.cliente = cliente;
+        this.formAdmin = formAdmin;
     }
 
     @Override
@@ -19,24 +22,51 @@ public class HiloConductor extends Thread {
 
         try {
 
-            BufferedReader entrada= new BufferedReader( new InputStreamReader( cliente.getInputStream()));
-            PrintWriter salida= new PrintWriter(cliente.getOutputStream(),true);
+            BufferedReader entrada = new BufferedReader(
+                    new InputStreamReader(cliente.getInputStream())
+            );
+
+            PrintWriter salida = new PrintWriter(
+                    cliente.getOutputStream(), true
+            );
+
             String mensaje;
 
             while ((mensaje = entrada.readLine()) != null) {
 
-                System.out.println("Mensaje recibido: " + mensaje);
-                System.out.println("Atendido por hilo: "+ Thread.currentThread().getName());
-                salida.println( "Servidor: mensaje recibido correctamente" );
+                String[] datos = mensaje.split("\\|", -1);
+
+                if (datos.length >= 3) {
+
+                    String nombreConductor = datos[0];
+                    String estadoPaquete = datos[1];
+                    String incidencia = datos[2];
+
+                    formAdmin.mostrarMensaje(
+                            "Conductor/a " + nombreConductor
+                            + " - Estado paquete: " + estadoPaquete
+                            + "\nIncidencia: " + incidencia
+                            + "\n"
+                    );
+                }
+
+                salida.println(
+                        "Servidor: mensaje recibido correctamente"
+                );
             }
 
-            System.out.println("Conductor desconectado: "+ Thread.currentThread().getName());
+            formAdmin.mostrarMensaje(
+                    "Conductor desconectado: "
+                    + Thread.currentThread().getName()
+            );
 
             cliente.close();
 
         } catch (IOException e) {
 
-            System.out.println("Error con conductor: " + e.getMessage());
+            formAdmin.mostrarMensaje(
+                    "Error con conductor: " + e.getMessage()
+            );
         }
     }
 }

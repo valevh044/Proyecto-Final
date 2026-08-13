@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.AsignacionPaquete;
+import Modelo.Conductor;
 import Servidor.ClienteConductor;
 import Vista.FormConductor;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ public class ControladorConductor {
     private FormConductor vista;
     private AsignacionPaquete asignacionPaquete;
     private ClienteConductor clienteConductor;
+    private Conductor conductor;
 
     private int idConductor;
     private int idPaquete;
@@ -27,6 +29,7 @@ public class ControladorConductor {
         this.vista = vista;
         this.idConductor = idConductor;
         this.asignacionPaquete = new AsignacionPaquete();
+        this.conductor = new Conductor();
 
         clienteConductor = new ClienteConductor();
 
@@ -100,11 +103,17 @@ public class ControladorConductor {
             return;
         }
 
-        String estado
-                = vista.cbEstadoAct.getSelectedItem().toString();
+        String estado = vista.cbEstadoAct
+                .getSelectedItem()
+                .toString()
+                .trim();
 
-        if (estado.equals("Incidencia")
-                && vista.txtIncidencia.getText().equals("")) {
+        String incidencia = vista.txtIncidencia
+                .getText()
+                .trim();
+
+        if (estado.equalsIgnoreCase("Incidencia")
+                && incidencia.equals("")) {
 
             JOptionPane.showMessageDialog(
                     null,
@@ -122,32 +131,26 @@ public class ControladorConductor {
                 estado
         );
 
-        if (estado.equals("Incidencia")) {
+        if (estado.equalsIgnoreCase("Incidencia")) {
 
             asignacionPaquete.registrarIncidencia(
                     idPaquete,
                     idConductor,
-                    vista.txtIncidencia.getText()
+                    incidencia
             );
         }
 
-
-        // Enviar cambio al servidor
+        String nombreConductor
+                = conductor.obtenerNombreConductor(idConductor);
 
         String mensaje
-                = "Conductor: " + idConductor
-                + " / Paquete: " + idPaquete
-                + " / Estado: " + estado;
+                = nombreConductor
+                + "|" + estado
+                + "|" + incidencia;
 
-        if (estado.equals("Incidencia")) {
-
-            mensaje = mensaje
-                    + " / Reporte: "
-                    + vista.txtIncidencia.getText();
-        }
+        System.out.println("ENVIANDO: " + mensaje);
 
         clienteConductor.enviarMensaje(mensaje);
-
 
         cargarPaquetes();
 
@@ -155,5 +158,6 @@ public class ControladorConductor {
 
         idPaquete = 0;
         idVehiculo = 0;
-    }
+    
+}
 }

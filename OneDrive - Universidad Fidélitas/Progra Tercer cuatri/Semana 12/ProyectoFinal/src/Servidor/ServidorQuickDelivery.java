@@ -3,22 +3,43 @@ package Servidor;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import Servidor.HiloConductor;
+import Vista.FormAdmin;
 
 public class ServidorQuickDelivery {
 
-    public static void main(String[] args) {
+    private ServerSocket servidor;
+    private FormAdmin formAdmin;
+
+    public ServidorQuickDelivery(FormAdmin formAdmin) {
+        this.formAdmin = formAdmin;
+    }
+
+    public void iniciarServidor() {
 
         try {
 
-            ServerSocket servidor= new ServerSocket(5000);
-            System.out.println("Servidor QuickDelivery iniciado puerto 5000" );
-            System.out.println( "Esperando conductores...");
+           servidor = new ServerSocket(6000);
+
+            formAdmin.mostrarMensaje(
+                    "Servidor QuickDelivery iniciado puerto 6000"
+            );
+
+            formAdmin.mostrarMensaje(
+                    "Esperando conductores..."
+            );
 
             while (true) {
 
                 Socket cliente = servidor.accept();
-                System.out.println("Nuevo conductor conectado");
-                HiloConductor hilo= new HiloConductor(cliente);
+
+                formAdmin.mostrarMensaje(
+                        "Nuevo conductor conectado"
+                );
+
+                HiloConductor hilo =
+                        new HiloConductor(cliente, formAdmin);
+
                 hilo.start();
             }
 

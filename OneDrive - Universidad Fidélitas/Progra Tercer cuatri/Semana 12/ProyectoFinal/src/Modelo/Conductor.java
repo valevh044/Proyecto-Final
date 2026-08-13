@@ -1,6 +1,7 @@
 package Modelo;
 
 import Datos.Conexion;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,16 +108,50 @@ public class Conductor {
         try {
 
             String sql = "SELECT id_conductor, nombre FROM conductores";
-            PreparedStatement pstmt= conectar.conectar().prepareStatement(sql);
+            PreparedStatement pstmt = conectar.conectar().prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
 
-                cbConductor.addItem( rs.getInt("id_conductor") + " - "+ rs.getString("nombre"));
+                cbConductor.addItem(rs.getInt("id_conductor") + " - " + rs.getString("nombre"));
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error al cargar conductores: "+ e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al cargar conductores: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+   public String obtenerNombreConductor(int idConductor) {
+
+    String nombre = "";
+    Conexion conectar = new Conexion();
+
+    String sql = "SELECT nombre FROM conductores WHERE id_conductor = ?";
+
+    try {
+
+        PreparedStatement pstmt =
+                conectar.conectar().prepareStatement(sql);
+
+        pstmt.setInt(1, idConductor);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            nombre = rs.getString("nombre");
+        }
+
+        rs.close();
+        pstmt.close();
+
+    } catch (SQLException e) {
+
+        System.out.println(
+                "Error al obtener nombre del conductor: "
+                + e.getMessage()
+        );
+    }
+
+    return nombre;
+}
 }
