@@ -1,28 +1,66 @@
-
 package Servidor;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.io.PrintWriter;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class ClienteConductor {
-    public static void main(String[] args) {
+
+    private Socket cliente;
+    private PrintWriter salida;
+    private BufferedReader entrada;
+
+    public ClienteConductor() {
+    }
+
+    public boolean conectar() {
 
         try {
 
-            Socket cliente = new Socket("localhost", 5000);
-            PrintWriter salida = new PrintWriter(cliente.getOutputStream(),true);
-            salida.println("Conductor conectado / Estado: Disponible");
-            BufferedReader entrada = new BufferedReader( new InputStreamReader(cliente.getInputStream()));
-            String respuesta = entrada.readLine();
-            System.out.println(respuesta);
+            cliente = new Socket("localhost", 5000);
+            salida = new PrintWriter(cliente.getOutputStream(),true);
+            entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()
+                    )
+            );
+
             System.out.println("Conductor conectado al servidor");
+            return true;
 
         } catch (IOException e) {
-            System.out.println("Error al conectar con el servidor: "+ e.getMessage()  );
+
+            System.out.println("Error al conectar con el servidor: "+ e.getMessage());
+
+            return false;
         }
     }
-    
+
+    public void enviarMensaje(String mensaje) {
+
+        try {
+
+            salida.println(mensaje);
+            String respuesta = entrada.readLine();
+            System.out.println(respuesta);
+
+        } catch (IOException e) {
+
+            System.out.println( "Error al enviar mensaje: " + e.getMessage());
+        }
+    }
+
+    public void cerrarConexion() {
+
+        try {
+
+            if (cliente != null) {
+                cliente.close();
+            }
+
+        } catch (IOException e) {
+
+            System.out.println("Error al cerrar conexión: " + e.getMessage());
+        }
+    }
 }

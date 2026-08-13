@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Servidor;
 
-/**
- *
- * @author Nelson Cardona
- */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,20 +19,24 @@ public class HiloConductor extends Thread {
 
         try {
 
-            BufferedReader entrada = new BufferedReader(new InputStreamReader( cliente.getInputStream()) );
-            String mensaje = entrada.readLine();
-            System.out.println("Mensaje recibido: " + mensaje);
+            BufferedReader entrada= new BufferedReader( new InputStreamReader( cliente.getInputStream()));
+            PrintWriter salida= new PrintWriter(cliente.getOutputStream(),true);
+            String mensaje;
 
-            PrintWriter salida = new PrintWriter(cliente.getOutputStream(),true);
+            while ((mensaje = entrada.readLine()) != null) {
 
-            salida.println("Servidor: estado recibido correctamente");
-            System.out.println("Conductor atendido por hilo: "+ Thread.currentThread().getName());
+                System.out.println("Mensaje recibido: " + mensaje);
+                System.out.println("Atendido por hilo: "+ Thread.currentThread().getName());
+                salida.println( "Servidor: mensaje recibido correctamente" );
+            }
+
+            System.out.println("Conductor desconectado: "+ Thread.currentThread().getName());
 
             cliente.close();
 
         } catch (IOException e) {
 
-            System.out.println( "Error con conductor: "+ e.getMessage() );
+            System.out.println("Error con conductor: " + e.getMessage());
         }
     }
 }
