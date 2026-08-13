@@ -39,6 +39,8 @@ public class FormConductor extends javax.swing.JFrame {
         cbEstadoAct = new javax.swing.JComboBox<>();
         txtIncidencia = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
         jLabel1.setText("Gestión de Vehículos");
@@ -76,6 +78,12 @@ public class FormConductor extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         btnGuardar.setText("Guadar Cambios");
 
+        btnActualizar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        btnActualizar.setText("Actualizar");
+
+        btnSalir.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        btnSalir.setText("Salir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -90,7 +98,12 @@ public class FormConductor extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cbEstadoAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
-                    .addComponent(btnGuardar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnActualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalir)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,7 +118,10 @@ public class FormConductor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtIncidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGuardar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnSalir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                 .addContainerGap())
@@ -164,7 +180,9 @@ public class FormConductor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnGuardar;
+    public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> cbEstadoAct;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -49,6 +49,8 @@ public class FormVehiculos extends javax.swing.JFrame {
         txtIdConductor = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblConductores = new javax.swing.JTable();
+        btnActualizar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         txtIdpaquete.setEditable(false);
         txtIdpaquete.setBackground(new java.awt.Color(255, 255, 255));
@@ -129,6 +131,12 @@ public class FormVehiculos extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblConductores);
 
+        btnActualizar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        btnActualizar.setText("Actualizar");
+
+        btnVolver.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        btnVolver.setText("Volver");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -141,13 +149,17 @@ public class FormVehiculos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtIdVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
+                        .addGap(112, 112, 112)
                         .addComponent(btnGuardar)
-                        .addGap(32, 32, 32)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnActualizar)
+                        .addGap(18, 18, 18)
                         .addComponent(btnModificar)
-                        .addGap(44, 44, 44)
+                        .addGap(18, 18, 18)
                         .addComponent(btnEliminar)
-                        .addGap(0, 249, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVolver)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -177,7 +189,7 @@ public class FormVehiculos extends javax.swing.JFrame {
                                     .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 24, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
@@ -208,7 +220,9 @@ public class FormVehiculos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnVolver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
@@ -222,7 +236,7 @@ public class FormVehiculos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,9 +290,11 @@ public class FormVehiculos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnModificar;
+    public javax.swing.JButton btnVolver;
     public javax.swing.JComboBox<String> cbEstado;
     public javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JLabel jLabel1;

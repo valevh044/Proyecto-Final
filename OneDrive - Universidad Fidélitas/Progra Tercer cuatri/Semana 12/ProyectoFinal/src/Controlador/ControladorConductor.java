@@ -30,9 +30,7 @@ public class ControladorConductor {
         this.idConductor = idConductor;
         this.asignacionPaquete = new AsignacionPaquete();
         this.conductor = new Conductor();
-
         clienteConductor = new ClienteConductor();
-
         clienteConductor.conectar();
 
         cargarPaquetes();
@@ -41,29 +39,38 @@ public class ControladorConductor {
 
             @Override
             public void mousePressed(MouseEvent e) {
-
                 int rec = vista.tblPaquetes.getSelectedRow();
-
-                idPaquete = Integer.parseInt(
-                        vista.tblPaquetes.getValueAt(rec, 0).toString()
-                );
-
-                idVehiculo = Integer.parseInt(
-                        vista.tblPaquetes.getValueAt(rec, 4).toString()
-                );
-
-                vista.cbEstadoAct.setSelectedItem(
-                        vista.tblPaquetes.getValueAt(rec, 3).toString()
-                );
+                idPaquete = Integer.parseInt(vista.tblPaquetes.getValueAt(rec, 0).toString());
+                idVehiculo = Integer.parseInt(vista.tblPaquetes.getValueAt(rec, 4).toString());
+                vista.cbEstadoAct.setSelectedItem(vista.tblPaquetes.getValueAt(rec, 3).toString());
             }
         });
 
         this.vista.btnGuardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                guardarCambios();
+            }
+        });
+        this.vista.btnActualizar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                cargarPaquetes();
+                idPaquete = 0;
+                idVehiculo = 0;
+                vista.txtIncidencia.setText("");
+            }
+        });
 
-                guardarCambios();
+        this.vista.btnSalir.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clienteConductor.cerrarConexion();
+                Vista.FormLog login = new Vista.FormLog();
+                login.setVisible(true);
+                vista.dispose();
             }
         });
     }
@@ -72,20 +79,12 @@ public class ControladorConductor {
 
         try {
 
-            DefaultTableModel modelo
-                    = asignacionPaquete.obtenerPaquetesConductor(
-                            idConductor
-                    );
-
+            DefaultTableModel modelo = asignacionPaquete.obtenerPaquetesConductor(idConductor);
             vista.tblPaquetes.setModel(modelo);
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(
-                    vista,
-                    "Error al cargar paquetes: "
-                    + e.getMessage()
-            );
+            JOptionPane.showMessageDialog(vista, "Error al cargar paquetes: " + e.getMessage());
         }
     }
 
@@ -93,12 +92,7 @@ public class ControladorConductor {
 
         if (idPaquete == 0) {
 
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Debe seleccionar un paquete",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un paquete", "ERROR", JOptionPane.ERROR_MESSAGE);
 
             return;
         }
@@ -115,33 +109,20 @@ public class ControladorConductor {
         if (estado.equalsIgnoreCase("Incidencia")
                 && incidencia.equals("")) {
 
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Debe escribir la incidencia",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(null, "Debe escribir la incidencia", "ERROR", JOptionPane.ERROR_MESSAGE);
 
             return;
         }
 
-        asignacionPaquete.actualizarEstadoPaquete(
-                idPaquete,
-                idVehiculo,
-                estado
-        );
+        asignacionPaquete.actualizarEstadoPaquete(idPaquete, idVehiculo, estado);
 
         if (estado.equalsIgnoreCase("Incidencia")) {
 
-            asignacionPaquete.registrarIncidencia(
-                    idPaquete,
-                    idConductor,
-                    incidencia
+            asignacionPaquete.registrarIncidencia(idPaquete, idConductor, incidencia
             );
         }
 
-        String nombreConductor
-                = conductor.obtenerNombreConductor(idConductor);
+        String nombreConductor = conductor.obtenerNombreConductor(idConductor);
 
         String mensaje
                 = nombreConductor
@@ -149,15 +130,13 @@ public class ControladorConductor {
                 + "|" + incidencia;
 
         System.out.println("ENVIANDO: " + mensaje);
-
         clienteConductor.enviarMensaje(mensaje);
-
         cargarPaquetes();
 
         vista.txtIncidencia.setText("");
 
         idPaquete = 0;
         idVehiculo = 0;
-    
-}
+
+    }
 }

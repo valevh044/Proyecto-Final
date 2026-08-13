@@ -19,27 +19,15 @@ public class ServidorQuickDelivery {
 
         try {
 
-           servidor = new ServerSocket(6000);
-
-            formAdmin.mostrarMensaje(
-                    "Servidor QuickDelivery iniciado puerto 6000"
-            );
-
-            formAdmin.mostrarMensaje(
-                    "Esperando conductores..."
-            );
+            servidor = new ServerSocket(6000);
+            formAdmin.mostrarMensaje("Servidor QuickDelivery iniciado puerto 6000");
+            formAdmin.mostrarMensaje("Esperando conductores...");
 
             while (true) {
 
                 Socket cliente = servidor.accept();
-
-                formAdmin.mostrarMensaje(
-                        "Nuevo conductor conectado"
-                );
-
-                HiloConductor hilo =
-                        new HiloConductor(cliente, formAdmin);
-
+                formAdmin.mostrarMensaje("Nuevo conductor conectado");
+                HiloConductor hilo = new HiloConductor(cliente, formAdmin);
                 hilo.start();
             }
 
@@ -48,4 +36,14 @@ public class ServidorQuickDelivery {
             System.out.println("Error en el servidor: " + e.getMessage());
         }
     }
+
+    public void cerrarServidor() {
+    try {
+        if (servidor != null) {
+            servidor.close();
+        }
+    } catch (IOException e) {
+        System.out.println( "Error al cerrar servidor: "+ e.getMessage());
+    }
+}
 }

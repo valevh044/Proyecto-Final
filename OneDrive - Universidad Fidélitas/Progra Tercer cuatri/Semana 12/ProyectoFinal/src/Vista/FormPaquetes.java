@@ -50,6 +50,7 @@ public class FormPaquetes extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         txtIdpaquete = new javax.swing.JTextField();
+        btnVolver = new javax.swing.JButton();
 
         btnModificar1.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         btnModificar1.setText("Modificar");
@@ -112,6 +113,9 @@ public class FormPaquetes extends javax.swing.JFrame {
         txtIdpaquete.setEditable(false);
         txtIdpaquete.setBackground(new java.awt.Color(255, 255, 255));
 
+        btnVolver.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        btnVolver.setText("Volver");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,8 +148,10 @@ public class FormPaquetes extends javax.swing.JFrame {
                                 .addComponent(btnGuardar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnModificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEliminar)))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnVolver)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -180,7 +186,8 @@ public class FormPaquetes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnVolver))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addContainerGap())
@@ -252,6 +259,7 @@ public class FormPaquetes extends javax.swing.JFrame {
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnModificar1;
+    public javax.swing.JButton btnVolver;
     public javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

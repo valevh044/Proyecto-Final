@@ -12,6 +12,8 @@ import javax.swing.SwingUtilities;
 
 public class FormAdmin extends javax.swing.JFrame {
 
+    private ServidorQuickDelivery servidor;
+
     public FormAdmin() {
         initComponents();
     }
@@ -36,6 +38,7 @@ public class FormAdmin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
         btnServidor = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         itemUsuarios = new javax.swing.JMenuItem();
@@ -43,7 +46,6 @@ public class FormAdmin extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -72,12 +74,21 @@ public class FormAdmin extends javax.swing.JFrame {
             }
         });
 
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnServidor)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -88,7 +99,9 @@ public class FormAdmin extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(btnServidor)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnServidor)
+                    .addComponent(btnSalir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                 .addContainerGap())
@@ -130,9 +143,6 @@ public class FormAdmin extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Salir");
-        jMenuBar1.add(jMenu5);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,15 +179,26 @@ public class FormAdmin extends javax.swing.JFrame {
     private void btnServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServidorActionPerformed
         // TODO add your handling code here:private void btnServidorActionPerformed(java.awt.event.ActionEvent evt) {
 
-        ServidorQuickDelivery servidor
-                = new ServidorQuickDelivery(this);
+        servidor = new ServidorQuickDelivery(this);
 
         Thread hiloServidor = new Thread(() -> {
             servidor.iniciarServidor();
         });
 
         hiloServidor.start();
+        btnServidor.setEnabled(false);
     }//GEN-LAST:event_btnServidorActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        if (servidor != null) {
+            servidor.cerrarServidor();
+        }
+
+        FormLog login = new FormLog();
+        login.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
         this.setVisible(false);
         Log.setVisible(true);
@@ -228,13 +249,13 @@ public class FormAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnServidor;
     private javax.swing.JMenuItem itemUsuarios;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

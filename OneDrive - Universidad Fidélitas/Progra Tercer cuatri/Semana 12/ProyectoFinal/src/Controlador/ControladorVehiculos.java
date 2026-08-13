@@ -69,6 +69,20 @@ public class ControladorVehiculos {
                 vista.txtIdConductor.setText(vista.tblConductores.getValueAt(rec, 0).toString());
             }
         });
+        this.vista.btnActualizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarDatos();
+                mostrarConductores();
+            }
+        });
+
+        this.vista.btnVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vista.dispose();
+            }
+        });
     }
 
     public void GuardarControlador() {
@@ -101,7 +115,7 @@ public class ControladorVehiculos {
             return;
         }
         if (vista.txtIdVehiculo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null,"Debe seleccionar un vehículo","ERROR",JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un vehículo", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
         modeloVehiculo = new Vehiculo();

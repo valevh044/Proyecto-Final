@@ -41,8 +41,25 @@ public class ControladorDespachador {
         this.vista.btnAsignar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 asignarPaquete();
+            }
+        });
+        this.vista.btnActualizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cargarTablaPaquetes();
+                cargarTablaVehiculos();
+                vista.txtPaquete.setText("");
+                vista.txtVehiculo.setText("");
+            }
+        });
+
+        this.vista.btnSalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Vista.FormLog login = new Vista.FormLog();
+                login.setVisible(true);
+                vista.dispose();
             }
         });
     }
@@ -56,7 +73,7 @@ public class ControladorDespachador {
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(vista,"Error al cargar paquetes: "+ e.getMessage());
+            JOptionPane.showMessageDialog(vista, "Error al cargar paquetes: " + e.getMessage());
         }
     }
 
@@ -69,27 +86,27 @@ public class ControladorDespachador {
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(vista,"Error al cargar vehículos: "+ e.getMessage());
+            JOptionPane.showMessageDialog(vista, "Error al cargar vehículos: " + e.getMessage());
         }
     }
 
     public void asignarPaquete() {
 
         if (vista.txtPaquete.getText().equals("")) {
-            JOptionPane.showMessageDialog(null,"Debe seleccionar un paquete","ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un paquete", "ERROR", JOptionPane.ERROR_MESSAGE);
 
             return;
         }
 
         if (vista.txtVehiculo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null,"Debe seleccionar un vehículo","ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un vehículo", "ERROR", JOptionPane.ERROR_MESSAGE);
 
             return;
         }
 
-        int idPaquete= Integer.parseInt(vista.txtPaquete.getText());
-        int idVehiculo= Integer.parseInt(vista.txtVehiculo.getText());
-        asignacionPaquete.asignarPaquete(idPaquete,idVehiculo);
+        int idPaquete = Integer.parseInt(vista.txtPaquete.getText());
+        int idVehiculo = Integer.parseInt(vista.txtVehiculo.getText());
+        asignacionPaquete.asignarPaquete(idPaquete, idVehiculo);
 
         cargarTablaPaquetes();
         cargarTablaVehiculos();
